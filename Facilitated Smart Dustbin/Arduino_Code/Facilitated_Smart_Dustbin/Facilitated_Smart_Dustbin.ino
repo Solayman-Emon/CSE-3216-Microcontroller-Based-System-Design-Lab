@@ -236,9 +236,10 @@ void loop() {
 if (average_Distance < 50)     
 {
 
-  if(average_Distance1 <= 4)
+  if(average_Distance1 <= 8)
   {
      FullBucket_Display("Bucket Full!!!");
+     delay(4000);
   }
   else
   {
