@@ -15,9 +15,12 @@ IDs::       16.02.04.091
 #include <Servo.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
+#include <AFMotor.h>
 
 Servo ServoMotor;
 LiquidCrystal_I2C lcd(0x27, 16, 2);   // Set the LCD address to 0x27 
+AF_DCMotor Left_Motor(2, MOTOR12_64KHZ);// create motor #2, 64KHz pwm
+AF_DCMotor Right_Motor(3 , MOTOR34_64KHZ);
 
 //Initialize the Variables
 byte SmileIcon[] = {
@@ -64,6 +67,7 @@ long temp_Distance[3];
 int CloseCoverDelay = 7;                // Open the Cover of the bucket for 7 seconds
 float temp_Val, temperature = 0;
 float temp_Arr[5];
+int state = 0;
 
 
 void setup() {
@@ -223,6 +227,37 @@ void FullBucket_Display(String msg1){
   lcd.write(1);
 }
 
+void Forward()
+{
+  Left_Motor.setSpeed(255); //Define maximum velocity
+  Left_Motor.run(FORWARD); //rotate the motor clockwise 
+  Right_Motor.setSpeed(200);
+  Right_Motor.run(FORWARD);
+}
+
+void Backward()
+{
+  Left_Motor.setSpeed(255); 
+  Left_Motor.run(BACKWARD); //rotate the motor counterclockwise 
+  Right_Motor.setSpeed(200);
+  Right_Motor.run(BACKWARD); 
+}
+
+void Right(){
+  Left_Motor.setSpeed(255);
+  Left_Motor.run(FORWARD);
+  Right_Motor.setSpeed(200);
+  Right_Motor.run(BACKWARD);
+}
+
+void Left(){
+  Left_Motor.setSpeed(255);
+  Left_Motor.run(BACKWARD);
+  Right_Motor.setSpeed(200);
+  Right_Motor.run(FORWARD);
+}
+ 
+
 void loop() {
 
 // Measure the distance of the object using Sonar Sensor
@@ -236,7 +271,7 @@ void loop() {
 if (average_Distance < 50)     
 {
 
-  if(average_Distance1 <= 8)
+  if(average_Distance1 <= 4)
   {
      FullBucket_Display("Bucket Full!!!");
      delay(4000);
@@ -255,6 +290,28 @@ if (average_Distance < 50)
     ServoMotor.detach(); 
 
   }
+
+  Serial1.print("tick");
+    if(Serial1.available() > 0){ // Checks whether data is comming from the serial port
+    state = Serial1.read(); // Reads the data from the serial port
+ }
+
+ 
+if (state == '1') {
+   Forward();
+}  
+
+else if(state == '2'){
+   Backward();
+}
+
+else if(state == '3'){
+   Right();
+}
+
+else if(state == '4'){
+   Left();
+}
  
 }
 
