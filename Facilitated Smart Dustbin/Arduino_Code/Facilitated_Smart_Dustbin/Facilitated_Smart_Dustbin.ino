@@ -82,8 +82,7 @@ void setup() {
   delay(100);
   ServoMotor.detach(); 
   
-  //Serial.begin(9600);            // Starts the serial communication
-  Serial1.begin(9600); 
+  Serial1.begin(9600);           // Starts the serial communication
   lcd.begin();
   lcd.backlight();
   lcd.createChar(0, SmileIcon);
@@ -208,7 +207,7 @@ void CloseBucket_Display(String msg1, String msg2, String msg3){
   
 }
 
-// Display message When the bucket is Full
+// Display message on LCD When the bucket is Full
 void FullBucket_Display(String msg1){
   
   lcd.clear();
@@ -228,34 +227,61 @@ void FullBucket_Display(String msg1){
   lcd.write(1);
 }
 
+void bluetooth_Display(String msg1, String msg2){
+  
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(msg1);
+  lcd.setCursor(0,1);
+  lcd.print(msg2);
+}
+
+// Gear Motor Forward
 void Forward()
 {
   Left_Motor.setSpeed(255); //Define maximum velocity
   Left_Motor.run(FORWARD); //rotate the motor clockwise 
-  Right_Motor.setSpeed(200);
+  Right_Motor.setSpeed(255);
   Right_Motor.run(FORWARD);
 }
 
+// Gear Motor Reverse
 void Backward()
 {
   Left_Motor.setSpeed(255); 
   Left_Motor.run(BACKWARD); //rotate the motor counterclockwise 
-  Right_Motor.setSpeed(200);
+  Right_Motor.setSpeed(255);
   Right_Motor.run(BACKWARD); 
 }
 
 void Right(){
   Left_Motor.setSpeed(255);
   Left_Motor.run(FORWARD);
-  Right_Motor.setSpeed(200);
+  Right_Motor.setSpeed(255);
   Right_Motor.run(BACKWARD);
 }
 
 void Left(){
   Left_Motor.setSpeed(255);
   Left_Motor.run(BACKWARD);
-  Right_Motor.setSpeed(200);
+  Right_Motor.setSpeed(255);
   Right_Motor.run(FORWARD);
+}
+
+void Release(){
+  Left_Motor.setSpeed(0);
+  Left_Motor.run(RELEASE);
+  Right_Motor.setSpeed(0);
+  Right_Motor.run(RELEASE);
+}
+
+void bluetooth_Date(){
+  
+   Serial1.print("tick");
+      if(Serial1.available() > 0){ // Checks whether data is comming from the serial port
+      state = Serial1.read(); // Reads the data from the serial port
+    }
+
 }
  
 
@@ -264,9 +290,9 @@ void loop() {
 // Measure the distance of the object using Sonar Sensor
   average_Distance = avg_Distance_Measure(trigPin, echoPin);
   average_Distance1 = avg_Distance_Measure(trigPin1, echoPin1);
-  //Serial.println(average_Distance1);
-   
+  
   display_Distance("Measuring ...","Distance :", average_Distance);   // Diplay the average distance of the object on LCD
+  bluetooth_Date();
   
 // Condition for Open the Cover of the bucket
 if (average_Distance < 50)     
@@ -294,27 +320,27 @@ if (average_Distance < 50)
 
 }
 
-   Serial1.print("tick");
-    if(Serial1.available() > 0){ // Checks whether data is comming from the serial port
-    state = Serial1.read(); // Reads the data from the serial port
-    }
+else if(state == '1' || state == '2' || state == '3' || state == '4' || state == '5'){
 
- Serial1.println(state);
-  if (state == '1') {
-   Forward();
-  }  
-
-   else if(state == '2'){
-   Backward();
+  bluetooth_Display("Bluetooth ...", "Connected ..");
+  
+  if(state == '1'){
+    Forward();
   }
-
-   else if(state == '3'){
-   Right();
+  else if(state == '2'){
+    Backward();
   }
-
-   else if(state == '4'){
-   Left();
+  else if(state == '3'){
+    Right();
   }
+  else if(state == '4'){
+    Left();
+  }
+  else if(state == '5'){
+    Release();
+    state = 0;
+  }
+}
  
 }
 
