@@ -56,12 +56,12 @@ byte DegreeIcon[] = {
   B00000
 };
 
-const int servoPin = 9;
+const int servoPin = 10;
 const int trigPin = 52;
 const int echoPin = 53;
 const int trigPin1 = 50;
 const int echoPin1 = 51;
-const int Lm35Pin = A1;  
+const int Lm35Pin = A8;  
 long duration, distance, average_Distance = 0, average_Distance1 = 0;
 long temp_Distance[3]; 
 int CloseCoverDelay = 7;                // Open the Cover of the bucket for 7 seconds
@@ -82,7 +82,8 @@ void setup() {
   delay(100);
   ServoMotor.detach(); 
   
-  Serial.begin(9600);            // Starts the serial communication
+  //Serial.begin(9600);            // Starts the serial communication
+  Serial1.begin(9600); 
   lcd.begin();
   lcd.backlight();
   lcd.createChar(0, SmileIcon);
@@ -263,7 +264,7 @@ void loop() {
 // Measure the distance of the object using Sonar Sensor
   average_Distance = avg_Distance_Measure(trigPin, echoPin);
   average_Distance1 = avg_Distance_Measure(trigPin1, echoPin1);
-  Serial.println(average_Distance1);
+  //Serial.println(average_Distance1);
    
   display_Distance("Measuring ...","Distance :", average_Distance);   // Diplay the average distance of the object on LCD
   
@@ -291,29 +292,29 @@ if (average_Distance < 50)
 
   }
 
-  Serial1.print("tick");
+}
+
+   Serial1.print("tick");
     if(Serial1.available() > 0){ // Checks whether data is comming from the serial port
     state = Serial1.read(); // Reads the data from the serial port
- }
+    }
 
- 
-if (state == '1') {
+ Serial1.println(state);
+  if (state == '1') {
    Forward();
-}  
+  }  
 
-else if(state == '2'){
+   else if(state == '2'){
    Backward();
-}
+  }
 
-else if(state == '3'){
+   else if(state == '3'){
    Right();
-}
+  }
 
-else if(state == '4'){
+   else if(state == '4'){
    Left();
-}
+  }
  
-}
-
 }
 
