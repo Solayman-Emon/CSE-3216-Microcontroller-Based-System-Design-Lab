@@ -64,7 +64,7 @@ const int echoPin1 = 51;
 const int Lm35Pin = A8;  
 long duration, distance, average_Distance = 0, average_Distance1 = 0;
 long temp_Distance[3]; 
-int CloseCoverDelay = 7;                // Open the Cover of the bucket for 7 seconds
+int ClosedCoverDelay = 7;                // Open the Cover of the bucket for 7 seconds
 float temp_Val, temperature = 0;
 float temp_Arr[5];
 int state = 0;
@@ -168,7 +168,7 @@ void OpenBucket_Display(String msg1, String msg2, String msg3){
   lcd.print(msg2);
   
 // Seven(7) Seconds delay before Closing the Cover  
-for(int i = CloseCoverDelay; i >= 0; i--)
+for(int i = ClosedCoverDelay; i >= 0; i--)
 {
    lcd.setCursor(6,1);
    lcd.print(i);
@@ -181,7 +181,7 @@ for(int i = CloseCoverDelay; i >= 0; i--)
 }
 
 // Displays message on LCD After Closing the Cover of the bucket
-void CloseBucket_Display(String msg1, String msg2, String msg3){
+void ClosedCover_Display(String msg1, String msg2, String msg3){
 
   lcd.clear();
   lcd.setCursor(0,0);
@@ -275,7 +275,7 @@ void Release(){
   Right_Motor.run(RELEASE);
 }
 
-void bluetooth_Date(){
+void bluetooth_Data(){
   
    Serial1.print("tick");
       if(Serial1.available() > 0){ // Checks whether data is comming from the serial port
@@ -283,7 +283,7 @@ void bluetooth_Date(){
     }
 
 }
- 
+   
 
 void loop() {
 
@@ -292,7 +292,7 @@ void loop() {
   average_Distance1 = avg_Distance_Measure(trigPin1, echoPin1);
   
   display_Distance("Measuring ...","Distance :", average_Distance);   // Diplay the average distance of the object on LCD
-  bluetooth_Date();
+  bluetooth_Data();
   
 // Condition for Open the Cover of the bucket
 if (average_Distance < 50)     
@@ -313,7 +313,7 @@ if (average_Distance < 50)
     OpenBucket_Display("Opened Cover","For","Seconds");  // Display message on LCD after the Cover Open
   
     ServoMotor.write(100);  // Close the Cover of the Bucket
-    CloseBucket_Display("Cover Closed","Thank You !!","The Temperature is :");  // Display message on LCD after Closed the Cover
+    ClosedCover_Display("Cover Closed","Thank You !!","The Temperature is :");  // Display message on LCD after Closed the Cover
     ServoMotor.detach(); 
 
   }
