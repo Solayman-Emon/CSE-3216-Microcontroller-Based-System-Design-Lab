@@ -3,4 +3,4 @@
 
 ## Overview
 
-![alt text](https://github.com/Solayman-Emon/CSE-3216-Microcontroller-Based-System-Design-Lab/Facilitated_Smart_Dustbin/Project_Photo&Video/demo_Video.gif "Project GIF")
+![alt text](https://github.com/Solayman-Emon/CSE-3216-Microcontroller-Based-System-Design-Lab/blob/master/Facilitated_Smart_Dustbin/Project_Photo%26Video/demo_Video.gif "Project GIF")
