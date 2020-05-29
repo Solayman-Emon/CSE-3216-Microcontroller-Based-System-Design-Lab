@@ -10,3 +10,8 @@ smart dustbin which people can easily use to throw trash and that will help to r
 accessible dustbin. 
 
 ![alt text](https://github.com/Solayman-Emon/CSE-3216-Microcontroller-Based-System-Design-Lab/blob/master/Facilitated_Smart_Dustbin/Project_Photo%26Video/demo_Video.gif "Project GIF")
+
+## Citation
+
+If you are using any components of this project please refer this :
+Solayman, Lamia, Nahid, and Toasin. **"Facilitated Smart Dustbin."** In sessional project of CSE 3216: Microcontroller Based System Design Lab in Ahsanullah University of Science & Technology.
