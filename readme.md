@@ -1,5 +1,7 @@
 # Facilitated Smart Dustbin
-![alt text](https://github.com/Solayman-Emon/CSE-3216-Microcontroller-Based-System-Design-Lab/blob/master/Facilitated_Smart_Dustbin/Project_Photo%26Video/Facilitated_Smart_Dustbin.png "Facilitated Smart Dustbin")
+<div align="center">
+  <img src="Facilitated_Smart_Dustbin/Project_Photo&Video/Facilitated_Smart_Dustbin.png" alt="Facilitated_Smart_Dustbin" width="50%">
+</div>
 
 ## Overview
 
@@ -15,7 +17,7 @@ If you have any question, feel free to contact me by email **solayman.emon07@gma
 
 ## Citation
 
-If you are using any components of this project please refer this:\
+If you are using any components of this project please refer this:
 
 ```
 @csproject{CSE 3216: Microcontroller Based System Design Lab, 
