@@ -1,4 +1,5 @@
 # Facilitated Smart Dustbin
+
 <div align="center">
   <img src="Facilitated_Smart_Dustbin/Project_Photo&Video/Facilitated_Smart_Dustbin.png" alt="Facilitated_Smart_Dustbin" width="50%">
 </div>
@@ -13,10 +14,11 @@ accessible dustbin. For more details please visit [here](https://github.com/Sola
 If you have any question, feel free to contact me by email **solayman.emon07@gmail.com** or raise an issue. 
 
 ## Visual Representation
-![alt text](https://github.com/Solayman-Emon/CSE-3216-Microcontroller-Based-System-Design-Lab/blob/master/Facilitated_Smart_Dustbin/Project_Photo%26Video/demo_Video.gif "Project GIF")
+
 <div align="center">
   <img src="Facilitated_Smart_Dustbin/Project_Photo&Video/demo_Video.gif" alt="Facilitated_Smart_Dustbin GIF" width="50%">
 </div>
+
 ## Citation
 
 If you are using any components of this project please refer this:
