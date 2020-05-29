@@ -30,3 +30,7 @@ If you are using any components of this project please refer this:
    author={Solayman, Lamia, Nahid, and Toasin} 
 }
 ```
+
+## Contact 
+
+Please contact the first author of the project - Solayman Hossain Emon (solayman.emon07@gmail.com) or raise an issue for any further queries.
