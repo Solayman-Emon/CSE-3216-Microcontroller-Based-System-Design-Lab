@@ -14,4 +14,8 @@ accessible dustbin. If you have any question, feel free to contact me by email *
 ## Citation
 
 If you are using any components of this project please refer this:\
-Solayman, Lamia, Nahid, and Toasin. **"Facilitated Smart Dustbin."** In sessional project of CSE 3216: Microcontroller Based System Design Lab in Ahsanullah University of Science & Technology.
+
+@csproject{CSE 3216: Microcontroller Based System Design Lab, 
+   title={Facilitated Smart Dustbin},
+   author={Solayman, Lamia, Nahid, and Toasin} 
+}
